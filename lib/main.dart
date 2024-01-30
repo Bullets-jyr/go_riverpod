@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'config/router/router_provider.dart';
 
@@ -9,12 +10,12 @@ part 'main.g.dart';
 
 @riverpod
 SharedPreferences sharedPreferences(SharedPreferencesRef ref) {
-  // lazy loading
   throw UnimplementedError();
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setPathUrlStrategy();
   final prefs = await SharedPreferences.getInstance();
 
   runApp(
