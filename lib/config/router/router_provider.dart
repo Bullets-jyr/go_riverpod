@@ -98,10 +98,8 @@ GoRouter route(RouteRef ref) {
                     name: RouteNames.thirdDetails,
                     builder: (context, state) {
                       final id = state.pathParameters['id']!;
-                      final firstName =
-                          state.uri.queryParameters['firstName'] ?? 'Anonymous';
-                      final lastName =
-                          state.uri.queryParameters['lastName'] ?? 'Anonymous';
+                      final firstName = state.uri.queryParameters['firstName'] ?? 'Anonymous';
+                      final lastName = state.uri.queryParameters['lastName'] ?? 'Anonymous';
 
                       return ThirdDetailsPage(
                         id: id,
