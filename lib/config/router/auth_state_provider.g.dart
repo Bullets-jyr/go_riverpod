@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'router_provider.dart';
+part of 'auth_state_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routeHash() => r'19aba827c1055c9e6b2610dbbb1e99119e6b7b32';
+String _$authStateHash() => r'98c351347df4da8c90b269d684b97d2ff2f9d757';
 
-/// See also [route].
-@ProviderFor(route)
-final routeProvider = AutoDisposeProvider<GoRouter>.internal(
-  route,
-  name: r'routeProvider',
+/// See also [AuthState].
+@ProviderFor(AuthState)
+final authStateProvider = AutoDisposeNotifierProvider<AuthState, bool>.internal(
+  AuthState.new,
+  name: r'authStateProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$routeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef RouteRef = AutoDisposeProviderRef<GoRouter>;
+typedef _$AuthState = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

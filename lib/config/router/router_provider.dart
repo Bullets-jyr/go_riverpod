@@ -12,6 +12,7 @@ import '../../pages/signin_page.dart';
 import '../../pages/signup_page.dart';
 import '../../pages/third_details_page.dart';
 import '../../pages/third_page.dart';
+import 'auth_state_provider.dart';
 import 'route_names.dart';
 
 part 'router_provider.g.dart';
@@ -20,9 +21,26 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 @riverpod
 GoRouter route(RouteRef ref) {
+  final authState = ref.watch(authStateProvider);
+
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/first',
+    redirect: (context, state) {
+      // 인증여부 확인
+      final authenticated = authState;
+      final tryingSignin = state.matchedLocation == '/signin';
+      final tryingSignup = state.matchedLocation == '/signup';
+      final authenticating = tryingSignin || tryingSignup;
+
+      // null: redirect 하지 않는다는 의미
+      if (!authenticated) return authenticating ? null : '/signin';
+
+      if (authenticating) return '/first';
+
+      // 원래의 경로로 향하게 합니다.
+      return null;
+    },
     routes: [
       GoRoute(
         path: '/signin',
@@ -73,6 +91,7 @@ GoRouter route(RouteRef ref) {
                 },
                 routes: [
                   GoRoute(
+                    // parentNavigatorKey: _rootNavigatorKey,
                     path: 'details/:id',
                     name: RouteNames.secondDetails,
                     builder: (context, state) {
@@ -98,8 +117,10 @@ GoRouter route(RouteRef ref) {
                     name: RouteNames.thirdDetails,
                     builder: (context, state) {
                       final id = state.pathParameters['id']!;
-                      final firstName = state.uri.queryParameters['firstName'] ?? 'Anonymous';
-                      final lastName = state.uri.queryParameters['lastName'] ?? 'Anonymous';
+                      final firstName =
+                          state.uri.queryParameters['firstName'] ?? 'Anonymous';
+                      final lastName =
+                          state.uri.queryParameters['lastName'] ?? 'Anonymous';
 
                       return ThirdDetailsPage(
                         id: id,

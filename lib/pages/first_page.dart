@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../config/router/route_names.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
@@ -16,7 +19,9 @@ class FirstPage extends StatelessWidget {
             const Text('First Page'),
             const SizedBox(height: 10),
             FilledButton(
-              onPressed: () {},
+              onPressed: () {
+                GoRouter.of(context).goNamed(RouteNames.firstDetails);
+              },
               child: const Text('View First Details'),
             ),
           ],

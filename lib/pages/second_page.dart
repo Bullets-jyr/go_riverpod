@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../config/router/route_names.dart';
 
 class SecondPage extends StatelessWidget {
   const SecondPage({Key? key}) : super(key: key);
@@ -16,9 +19,21 @@ class SecondPage extends StatelessWidget {
             const Text('Second Page'),
             const SizedBox(height: 10),
             FilledButton(
-              onPressed: () {},
+              onPressed: () {
+                GoRouter.of(context).goNamed(
+                  RouteNames.secondDetails,
+                  pathParameters: {'id': '1'},
+                );
+              },
               child: const Text('View Second Details'),
             ),
+            const SizedBox(height: 10),
+            OutlinedButton(
+              onPressed: () {
+                GoRouter.of(context).go('/nowhere');
+              },
+              child: const Text('No Where'),
+            )
           ],
         ),
       ),
